@@ -2,25 +2,9 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <body>
     <div th:replace="~{layout :: conteudo}">
-        
         <section>
-             <h1>Meus Jogos</h1>
-             <table class="table">
-                 <thead>
-                     <tr>
-                         <th>Título</th>
-                         <th>Autor</th>
-                         </tr>
-                 </thead>
-                 <tbody>
-                     <tr th:each="jogo : ${jogos}">
-                         <td th:text="${jogo.titulo}">Nome do Jogo</td>
-                         <td th:text="${jogo.autor}">Autor do Jogo</td>
-                         </tr>
-                 </tbody>
-             </table>
-        </section>
-
+            <h1>Meus Jogos</h1>
+            </section>
     </div>
 </body>
 </html>
