@@ -95,4 +95,4 @@ O deploy contínuo será feito a partir do GitHub. Siga as instruções para con
 
 Eliton Carvalho
 
-- GitHub: `[@Lithz-coder](https://github
+- GitHub: [@Lithz-coder](https://github.com/Lithz-coder)
