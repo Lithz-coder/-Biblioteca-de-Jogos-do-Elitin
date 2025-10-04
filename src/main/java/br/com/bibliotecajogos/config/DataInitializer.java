@@ -1,83 +1,42 @@
+// Local do arquivo: src/main/java/br/com/bibliotecajogos/config/DataInitializer.java
 package br.com.bibliotecajogos.config;
 
-import br.com.bibliotecajogos.entity.Categoria;
 import br.com.bibliotecajogos.entity.Jogo;
-import br.com.bibliotecajogos.repository.CategoriaRepository;
 import br.com.bibliotecajogos.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 
-@Component // 1. Transforma a classe em um bean gerenciado pelo Spring
-@Profile("dev") // 2. O Spring SÓ ativará esta classe se o perfil "dev" estiver ativo
-public class DataInitializer implements CommandLineRunner { // 3. Permite executar um código na inicialização
+@Component
+public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private JogoRepository jogoRepository;
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
     @Override
     public void run(String... args) throws Exception {
-        // 4. Verifica se o banco já tem dados para não duplicar
-        if (categoriaRepository.count() == 0) {
+        // Verifica se o banco de dados já tem jogos para não inserir novamente
+        if (jogoRepository.count() == 0) {
             System.out.println(">>> [DataInitializer] Populando banco de dados de desenvolvimento...");
 
-            // --- Criar Categorias ---
-            Categoria rpg = new Categoria();
-            rpg.setNome("RPG");
+            Jogo w1 = new Jogo("Watch Dogs", "Ubisoft Montreal", "Ação-Aventura", 2014, false, "https://upload.wikimedia.org/wikipedia/pt/b/b3/Watch_Dogs_capa.png");
+            Jogo w2 = new Jogo("Watch Dogs 2", "Ubisoft Montreal", "Ação-Aventura", 2016, true, "https://upload.wikimedia.org/wikipedia/pt/b/b8/Watch_Dogs_2_capa.png");
+            Jogo gta5 = new Jogo("Grand Theft Auto V", "Rockstar North", "Ação-Aventura", 2013, true, "https://upload.wikimedia.org/wikipedia/pt/8/80/Grand_Theft_Auto_V_capa.png");
+            Jogo gta6 = new Jogo("Grand Theft Auto VI", "Rockstar Games", "Ação-Aventura", 2025, false, ""); // URL da capa vazia por enquanto
+            Jogo gow1 = new Jogo("God of War", "Santa Monica Studio", "Ação-Aventura", 2005, true, "");
+            Jogo gow2 = new Jogo("God of War II", "Santa Monica Studio", "Ação-Aventura", 2007, true, "");
+            Jogo gow3 = new Jogo("God of War III", "Santa Monica Studio", "Ação-Aventura", 2010, true, "");
+            Jogo gow2018 = new Jogo("God of War", "Santa Monica Studio", "Ação-Aventura", 2018, true, "https://upload.wikimedia.org/wikipedia/pt/8/82/God_of_War_2018_capa.png");
+            Jogo ragnarok = new Jogo("God of War Ragnarök", "Santa Monica Studio", "Ação-Aventura", 2022, false, "https://upload.wikimedia.org/wikipedia/pt/a/a5/God_of_War_Ragnar%C3%B6k_capa.png");
 
-            Categoria acao = new Categoria();
-            acao.setNome("Ação");
-
-            Categoria estrategia = new Categoria();
-            estrategia.setNome("Estratégia");
+            // Salva todos os jogos de uma vez no banco de dados
+            jogoRepository.saveAll(List.of(w1, w2, gta5, gta6, gow1, gow2, gow3, gow2018, ragnarok));
             
-            Categoria aventura = new Categoria();
-            aventura.setNome("Aventura");
-
-            // Salva todas as categorias de uma vez
-            categoriaRepository.saveAll(List.of(rpg, acao, estrategia, aventura));
-
-            // --- Criar Jogos ---
-            Jogo jogo1 = new Jogo();
-            jogo1.setTitulo("The Witcher 3: Wild Hunt");
-            jogo1.setAutor("CD Projekt Red");
-            jogo1.setAnoPublicacao(2015);
-            jogo1.setGenero("RPG de Ação");
-            jogo1.setCategoria(rpg); // Associa o jogo à categoria RPG
-            jogo1.setFinalizado(true);
-            jogo1.setUrlCapa("https://upload.wikimedia.org/wikipedia/pt/thumb/0/06/TW3_Wild_Hunt.png/270px-TW3_Wild_Hunt.png");
-
-            Jogo jogo2 = new Jogo();
-            jogo2.setTitulo("Red Dead Redemption 2");
-            jogo2.setAutor("Rockstar Games");
-            jogo2.setAnoPublicacao(2018);
-            jogo2.setGenero("Ação-Aventura");
-            jogo2.setCategoria(acao); // Associa o jogo à categoria Ação
-            jogo2.setFinalizado(true);
-            jogo2.setUrlCapa("https://upload.wikimedia.org/wikipedia/pt/e/e7/Red_Dead_Redemption_2.png");
-            
-            Jogo jogo3 = new Jogo();
-            jogo3.setTitulo("Baldur's Gate 3");
-            jogo3.setAutor("Larian Studios");
-            jogo3.setAnoPublicacao(2023);
-            jogo3.setGenero("RPG");
-            jogo3.setCategoria(rpg);
-            jogo3.setFinalizado(false);
-            jogo3.setUrlCapa("https://upload.wikimedia.org/wikipedia/pt/1/18/Baldur%27s_Gate_III_Larian_Studios_key_art.png");
-
-            // Salva todos os jogos de uma vez
-            jogoRepository.saveAll(Arrays.asList(jogo1, jogo2, jogo3));
-
             System.out.println(">>> [DataInitializer] Banco de dados populado com sucesso!");
         } else {
-            System.out.println(">>> [DataInitializer] O banco de dados já contém dados. Nenhuma ação foi tomada.");
+            System.out.println(">>> [DataInitializer] O banco de dados já contém dados. Nenhuma ação necessária.");
         }
     }
 }
