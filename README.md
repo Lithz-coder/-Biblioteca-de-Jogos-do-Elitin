@@ -1,6 +1,6 @@
 # Biblioteca de Jogos - Spring Boot
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Status](https://img.shields.io/badge/status-finalizado-green)
 
 Um projeto de um sistema de gerenciamento para uma biblioteca de jogos, desenvolvido com Java e Spring Boot. Permite cadastrar, listar, editar, excluir e pesquisar jogos.
 
