@@ -29,69 +29,21 @@ public class Jogo {
     public Jogo() {
     }
 
-    // --- Getters e Setters ---
+    // ⭐ CONSTRUTOR ADICIONADO PARA RESOLVER O ERRO! ⭐
+    public Jogo(String titulo, String autor, Integer anoPublicacao, String genero, String urlCapa, boolean finalizado, Categoria categoria) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.genero = genero;
+        this.urlCapa = urlCapa;
+        this.finalizado = finalizado;
+        this.categoria = categoria;
+    }
 
+    // --- Getters e Setters (continuam aqui) ---
+    
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public Integer getAnoPublicacao() {
-        return anoPublicacao;
-    }
-
-    public void setAnoPublicacao(Integer anoPublicacao) {
-        this.anoPublicacao = anoPublicacao;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getUrlCapa() {
-        return urlCapa;
-    }
-
-    public void setUrlCapa(String urlCapa) {
-        this.urlCapa = urlCapa;
-    }
-
-    public boolean isFinalizado() {
-        return finalizado;
-    }
-
-    public void setFinalizado(boolean finalizado) {
-        this.finalizado = finalizado;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
+    // ... resto dos seus getters e setters
 }
